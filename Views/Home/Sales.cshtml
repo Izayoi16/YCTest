@@ -1,0 +1,41 @@
+﻿@model YC.Sales
+
+<h2>Create Sales</h2>
+
+<div>
+    <label for="Title">Name:</label>
+    @Html.TextBoxFor(model => model.Name, new { @required = "required", @id = "txtName" })
+</div>
+<div>
+    <label for="Local">PhoneNumber:</label>
+    @Html.TextBoxFor(model => model.PhoneNumber, new { @required = "required", @id = "txtPhoneNumber" })
+</div>
+<button id="btnSubmit">Submit</button>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    $(document).ready(function() {
+        $("#btnSubmit").click(function(e) {
+            e.preventDefault();
+
+            var salesData = {
+                Name: $("#txtName").val(),
+                PhoneNumber: $("#txtPhoneNumber").val()
+            };
+
+            $.ajax({
+                url: '@Url.Action("Sales", "API")',
+                type: 'POST',
+                data: salesData,
+                success: function(response) {
+                    alert('Successfully added!');
+                    // Handle further success scenarios here, like updating the UI or navigating to another page
+                },
+                error: function(error) {
+                    alert('Error adding data.');
+                    // Handle errors, like displaying a detailed error message
+                }
+            });
+        });
+    });
+</script>

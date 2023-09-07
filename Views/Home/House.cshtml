@@ -1,0 +1,50 @@
+﻿@model YC.House
+@{
+    ViewData["Title"] = "Privacy Policy";
+    List<YC.Sales> sales = ViewBag.sales;
+}
+<header>
+
+    <style>
+        input[type=number]::-webkit-outer-spin-button,
+        input[type=number]::-webkit-inner-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+        }
+    </style>
+</header>
+<h2>Create House</h2>
+
+@using (Html.BeginForm("House", "API", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    <div>
+        <label for="Title">Title:</label>
+        @Html.TextBoxFor(model => model.Title, new { @required = "required" })
+    </div>
+    <div>
+        <label for="Local">Local:</label>
+        @Html.TextBoxFor(model => model.Local, new { @required = "required" })
+    </div>
+    <div>
+        <label for="Master">Master:</label>
+        @Html.TextBoxFor(model => model.Master, new { @required = "required" })
+    </div>
+    <div>
+        <label for="MasterPhone">Master Phone:</label>
+        @Html.TextBoxFor(model => model.MasterPhone, new { @required = "required" })
+    </div>
+    <div>
+        <label for="Sales">Sales:</label>
+        <select name="Sales">
+            @foreach (var data in sales)
+            {
+                <option value="@data.Id">@data.Name</option>
+            }
+        </select>
+    </div>
+    <div>
+        <label for="Price">Price:</label>
+        @Html.TextBoxFor(model => model.Price, new { required = "required", inputmode = "decimal", type = "number", min = "0.00", step = "0.01" })
+    </div>
+    <input type="submit" value="Create" />
+}

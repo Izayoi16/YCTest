@@ -1,0 +1,61 @@
+﻿@model YC.Sales
+
+<h2>Create Sales</h2>
+
+<div>
+    @Html.Hidden("Id", Model.Id, new { @id = "txtId" })
+    <label for="Title">Name:</label>
+    @Html.TextBox("Name", Model.Name, new { @required = "required", @id = "txtName" })
+</div>
+<div>
+    <label for="Local">PhoneNumber:</label>
+    @Html.TextBox("PhoneNumber", Model.PhoneNumber, new { @required = "required", @id = "txtPhoneNumber" })
+</div>
+<button id="Update">Update</button>
+<button id="Delete">Delete</button>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    $(document).ready(function() {
+        $("#Update").click(function(e) {
+            e.preventDefault();
+
+            var salesData = {
+                Id: $("#txtId").val(),
+                Name: $("#txtName").val(),
+                PhoneNumber: $("#txtPhoneNumber").val()
+            };
+
+            $.ajax({
+                url: '@Url.Action("Sales", "API")',
+                type: 'PUT',
+                data: salesData,
+                success: function(response) {
+                    alert('Successfully added!');
+                },
+                error: function(error) {
+                    alert('Error adding data.');
+                }
+            });
+        });
+        $("#Delete").click(function(e) {
+            e.preventDefault();
+
+            var salesData = {
+                Id: $("#txtId").val(),
+            };
+
+            $.ajax({
+                url: '@Url.Action("Sales", "API")',
+                type: 'Delete',
+                data: salesData,
+                success: function(response) {
+                    alert('Successfully added!');
+                },
+                error: function(error) {
+                    alert('Error adding data.');
+                }
+            });
+        });
+    });
+</script>

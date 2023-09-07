@@ -1,0 +1,46 @@
+﻿@model DTO.YCPriview
+@{
+    ViewData["Title"] = "Privacy Policy";
+}
+
+<div class="house-details">
+    <h2>House Details</h2>
+
+    <div class="detail-item">
+        <label for="title">Title:</label>
+        <span id="title">@Model.Title</span>
+    </div>
+
+    <div class="detail-item">
+        <label for="local">Local:</label>
+        <span id="local">@Model.Local</span>
+    </div>
+
+    <div class="detail-item">
+        <label for="master">Master:</label>
+        <span id="master">@Model.Master</span>
+    </div>
+
+    <div class="detail-item">
+        <label for="masterPhone">Master Phone:</label>
+        <span id="masterPhone">@Model.MasterPhone</span>
+    </div>
+
+    <div class="detail-item">
+        <label for="selseName">Selse Name:</label>
+        <span id="selseName">@Model.SelseName</span>
+    </div>
+
+    <div class="detail-item">
+        <label for="selsePhoneNumber">Selse Phone Number:</label>
+        <span id="selsePhoneNumber">@Model.SelsePhoneNumber</span>
+    </div>
+
+    <div class="detail-item">
+        <label for="price">Price:</label>
+        <span id="price">$@Model.Price.ToString("#,##0") NTD</span>
+    </div>
+</div>
+
+<a href="..\HouseDetail\@Model.Hid">修改房屋資料</a>
+<a href="..\SalesDetail\@Model.Sid">修改業務資料</a>
